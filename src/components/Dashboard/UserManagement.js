@@ -28,7 +28,8 @@ import {
   WarningOutlined,
   TeamOutlined,
   TrophyOutlined,
-  CalendarOutlined
+  CalendarOutlined,
+  BankOutlined
 } from "@ant-design/icons";
 
 const { Title, Text } = Typography;
@@ -255,7 +256,7 @@ export default function UserManagement() {
           <Button
             type="text"
             size="small"
-            icon={record.status === 'banned' ? <CheckCircleOutlined /> : <BanOutlined />}
+            icon={record.status === 'banned' ? <CheckCircleOutlined /> : <BankOutlined/>}
             onClick={() => handleBanToggle(record)}
             style={{ color: record.status === 'banned' ? 'var(--valorant-teal)' : 'var(--valorant-red)' }}
           />
@@ -379,7 +380,7 @@ export default function UserManagement() {
             <Statistic
               title={<span className="valorant-subtitle">BANNED</span>}
               value={userStats.banned}
-              prefix={<BanOutlined />}
+              prefix={<BankOutlined />}
               valueStyle={{ 
                 color: 'var(--valorant-red)',
                 fontFamily: "'Rajdhani', sans-serif",
