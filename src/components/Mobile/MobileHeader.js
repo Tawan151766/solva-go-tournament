@@ -7,10 +7,9 @@ import {
   UserOutlined,
   HomeOutlined,
   DashboardOutlined,
-  TrophyOutlined,
-  TeamOutlined,
   SettingOutlined,
-  LogoutOutlined
+  LogoutOutlined,
+  TrophyOutlined
 } from "@ant-design/icons";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -41,21 +40,6 @@ export default function MobileHeader() {
       label: <Link href="/dashboard" onClick={() => setDrawerVisible(false)}>แดชบอร์ด</Link>,
     },
     {
-      key: "/tournaments",
-      icon: <TrophyOutlined />,
-      label: <Link href="/tournaments" onClick={() => setDrawerVisible(false)}>ทัวร์นาเมนต์</Link>,
-    },
-    {
-      key: "/events",
-      icon: <TrophyOutlined />,
-      label: <Link href="/events" onClick={() => setDrawerVisible(false)}>รายการแข่งขัน</Link>,
-    },
-    {
-      key: "/teams",
-      icon: <TeamOutlined />,
-      label: <Link href="/teams" onClick={() => setDrawerVisible(false)}>ทีม</Link>,
-    },
-    {
       type: "divider"
     },
     {
@@ -79,9 +63,6 @@ export default function MobileHeader() {
   const getSelectedKey = () => {
     if (pathname === "/") return ["/"];
     if (pathname === "/dashboard") return ["/dashboard"];
-    if (pathname.startsWith("/tournament")) return ["/tournaments"];
-    if (pathname.startsWith("/event")) return ["/events"];
-    if (pathname.startsWith("/team")) return ["/teams"];
     return [];
   };
 

@@ -1,20 +1,23 @@
 "use client";
 import { useState } from "react";
-import { Layout, Menu, Button, Avatar, Dropdown, Typography, Badge } from "antd";
-import { 
-  HomeOutlined, 
-  TrophyOutlined, 
-  TeamOutlined, 
-  CalendarOutlined,
-  FireOutlined,
-  StarOutlined,
-  ThunderboltOutlined,
+import {
+  Layout,
+  Menu,
+  Button,
+  Avatar,
+  Dropdown,
+  Typography,
+  Badge,
+} from "antd";
+import {
+  HomeOutlined,
+  DashboardOutlined,
   UserOutlined,
   SettingOutlined,
   LogoutOutlined,
   BellOutlined,
   MenuOutlined,
-  DashboardOutlined
+  ThunderboltOutlined,
 } from "@ant-design/icons";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -30,8 +33,9 @@ export default function NavigationBar() {
   const currentUser = {
     name: "Admin User",
     role: "admin",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face",
-    notifications: 3
+    avatar:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face",
+    notifications: 3,
   };
 
   const menuItems = [
@@ -44,45 +48,6 @@ export default function NavigationBar() {
       key: "/dashboard",
       icon: <DashboardOutlined />,
       label: <Link href="/dashboard">แดชบอร์ด</Link>,
-    },
-    {
-      key: "tournaments",
-      icon: <TrophyOutlined />,
-      label: "ทัวร์นาเมนต์",
-      children: [
-        {
-          key: "/tournaments",
-          icon: <CalendarOutlined />,
-          label: <Link href="/tournaments">ทั้งหมด</Link>,
-        },
-        {
-          key: "/tournaments/create",
-          icon: <ThunderboltOutlined />,
-          label: <Link href="/tournaments/create">สร้างใหม่</Link>,
-        },
-      ],
-    },
-    {
-      key: "events",
-      icon: <FireOutlined />,
-      label: "รายการแข่งขัน",
-      children: [
-        {
-          key: "/events",
-          icon: <StarOutlined />,
-          label: <Link href="/events">ทั้งหมด</Link>,
-        },
-        {
-          key: "/events/create",
-          icon: <ThunderboltOutlined />,
-          label: <Link href="/events/create">สร้างใหม่</Link>,
-        },
-      ],
-    },
-    {
-      key: "/teams",
-      icon: <TeamOutlined />,
-      label: <Link href="/teams">ทีม</Link>,
     },
   ];
 
@@ -115,19 +80,16 @@ export default function NavigationBar() {
   const getSelectedKey = () => {
     if (pathname === "/") return ["/"];
     if (pathname === "/dashboard") return ["/dashboard"];
-    if (pathname.startsWith("/tournament")) return ["tournaments"];
-    if (pathname.startsWith("/event")) return ["events"];
-    if (pathname.startsWith("/team")) return ["/teams"];
     return [];
   };
 
   return (
-    <Header 
+    <Header
       className="valorant-header"
-      style={{ 
-        position: "fixed", 
-        top: 0, 
-        width: "100%", 
+      style={{
+        position: "fixed",
+        top: 0,
+        width: "100%",
         zIndex: 1000,
         padding: "0 24px",
         height: "64px",
@@ -136,7 +98,7 @@ export default function NavigationBar() {
         justifyContent: "space-between",
         background: "var(--valorant-dark-container)",
         borderBottom: "2px solid var(--valorant-red)",
-        boxShadow: "0 2px 8px rgba(0, 0, 0, 0.3)"
+        boxShadow: "0 2px 8px rgba(0, 0, 0, 0.3)",
       }}
     >
       {/* Left side - Logo and Menu */}
@@ -187,7 +149,7 @@ export default function NavigationBar() {
             style={{
               background: "transparent",
               border: "none",
-              lineHeight: "62px"
+              lineHeight: "62px",
             }}
           />
         </div>
@@ -209,9 +171,9 @@ export default function NavigationBar() {
             type="text"
             icon={<BellOutlined />}
             className="valorant-button-secondary"
-            style={{ 
+            style={{
               color: "var(--valorant-text-secondary)",
-              border: "1px solid var(--valorant-dark-border)"
+              border: "1px solid var(--valorant-dark-border)",
             }}
           />
         </Badge>
@@ -226,29 +188,42 @@ export default function NavigationBar() {
           trigger={["click"]}
           overlayClassName="valorant-dropdown"
         >
-          <div style={{ 
-            display: "flex", 
-            alignItems: "center", 
-            gap: 8, 
-            cursor: "pointer",
-            padding: "4px 12px",
-            borderRadius: "6px",
-            border: "1px solid var(--valorant-dark-border)",
-            background: "var(--valorant-dark-elevated)",
-            transition: "all 0.3s ease"
-          }}
-          className="user-profile-hover"
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              cursor: "pointer",
+              padding: "4px 12px",
+              borderRadius: "6px",
+              border: "1px solid var(--valorant-dark-border)",
+              background: "var(--valorant-dark-elevated)",
+              transition: "all 0.3s ease",
+            }}
+            className="user-profile-hover"
           >
-            <Avatar 
-              size={32} 
+            <Avatar
+              size={32}
               src={currentUser.avatar}
               style={{ border: "2px solid var(--valorant-red)" }}
             />
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
-              <Text className="valorant-text-primary" style={{ fontSize: 12, fontWeight: 600 }}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+              }}
+            >
+              <Text
+                className="valorant-text-primary"
+                style={{ fontSize: 12, fontWeight: 600 }}
+              >
                 {currentUser.name}
               </Text>
-              <Text className="valorant-text-tertiary" style={{ fontSize: 10, textTransform: "uppercase" }}>
+              <Text
+                className="valorant-text-tertiary"
+                style={{ fontSize: 10, textTransform: "uppercase" }}
+              >
                 {currentUser.role}
               </Text>
             </div>
@@ -258,23 +233,26 @@ export default function NavigationBar() {
 
       {/* Mobile Menu Overlay */}
       {collapsed && (
-        <div className="mobile-nav-overlay" style={{
-          position: "fixed",
-          top: "64px",
-          left: 0,
-          right: 0,
-          background: "var(--valorant-dark-container)",
-          border: "1px solid var(--valorant-dark-border)",
-          zIndex: 999,
-          padding: "16px 0"
-        }}>
+        <div
+          className="mobile-nav-overlay"
+          style={{
+            position: "fixed",
+            top: "64px",
+            left: 0,
+            right: 0,
+            background: "var(--valorant-dark-container)",
+            border: "1px solid var(--valorant-dark-border)",
+            zIndex: 999,
+            padding: "16px 0",
+          }}
+        >
           <Menu
             mode="vertical"
             selectedKeys={getSelectedKey()}
             items={menuItems}
             style={{
               background: "transparent",
-              border: "none"
+              border: "none",
             }}
           />
         </div>
