@@ -1,0 +1,698 @@
+/* Import Valorant-style fonts */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Valorant CSS Variables */
+:root {
+  --valorant-red: #ff4655;
+  --valorant-red-hover: #ff6b75;
+  --valorant-red-active: #e63946;
+  --valorant-teal: #00d4aa;
+  --valorant-teal-hover: #1ae6b8;
+  --valorant-dark-bg: #0f1419;
+  --valorant-dark-container: #1a1f26;
+  --valorant-dark-elevated: #232a33;
+  --valorant-dark-border: #2a3441;
+  --valorant-text-primary: #ffffff;
+  --valorant-text-secondary: #b8c5d1;
+  --valorant-text-tertiary: #8a9ba8;
+  --valorant-glow: 0 0 20px rgba(255, 70, 85, 0.3);
+  --valorant-glow-strong: 0 0 30px rgba(255, 70, 85, 0.5);
+}
+
+/* Global Valorant Styling */
+body {
+  background: var(--valorant-dark-bg) !important;
+  color: var(--valorant-text-primary) !important;
+  font-family: 'Rajdhani', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+/* Valorant-style headings */
+.valorant-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: linear-gradient(135deg, var(--valorant-red), var(--valorant-teal));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 24px;
+}
+
+.valorant-subtitle {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  color: var(--valorant-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Valorant-style buttons */
+.valorant-button-primary {
+  background: linear-gradient(135deg, var(--valorant-red), #ff6b75) !important;
+  border: none !important;
+  box-shadow: var(--valorant-glow) !important;
+  font-family: 'Rajdhani', sans-serif !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  transition: all 0.3s ease !important;
+}
+
+.valorant-button-primary:hover {
+  background: linear-gradient(135deg, var(--valorant-red-hover), #ff8a94) !important;
+  box-shadow: var(--valorant-glow-strong) !important;
+  transform: translateY(-2px) !important;
+}
+
+.valorant-button-secondary {
+  background: transparent !important;
+  border: 2px solid var(--valorant-red) !important;
+  color: var(--valorant-red) !important;
+  font-family: 'Rajdhani', sans-serif !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  transition: all 0.3s ease !important;
+}
+
+.valorant-button-secondary:hover {
+  background: var(--valorant-red) !important;
+  color: white !important;
+  box-shadow: var(--valorant-glow) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Valorant-style cards */
+.valorant-card {
+  background: var(--valorant-dark-container) !important;
+  border: 1px solid var(--valorant-dark-border) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+.valorant-card:hover {
+  border-color: var(--valorant-red) !important;
+  box-shadow: 0 8px 32px rgba(255, 70, 85, 0.2) !important;
+  transform: translateY(-4px) !important;
+}
+
+.valorant-card-header {
+  background: var(--valorant-dark-elevated) !important;
+  border-bottom: 1px solid var(--valorant-dark-border) !important;
+  color: var(--valorant-text-primary) !important;
+  font-family: 'Rajdhani', sans-serif !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* Valorant-style tables */
+.valorant-table .ant-table {
+  background: var(--valorant-dark-container) !important;
+  color: var(--valorant-text-primary) !important;
+}
+
+.valorant-table .ant-table-thead > tr > th {
+  background: var(--valorant-dark-elevated) !important;
+  color: var(--valorant-text-primary) !important;
+  border-bottom: 2px solid var(--valorant-red) !important;
+  font-family: 'Rajdhani', sans-serif !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.valorant-table .ant-table-tbody > tr > td {
+  background: var(--valorant-dark-container) !important;
+  color: var(--valorant-text-primary) !important;
+  border-bottom: 1px solid var(--valorant-dark-border) !important;
+}
+
+.valorant-table .ant-table-tbody > tr:hover > td {
+  background: var(--valorant-dark-elevated) !important;
+}
+
+/* Valorant-style tags */
+.valorant-tag-success {
+  background: linear-gradient(135deg, var(--valorant-teal), #1ae6b8) !important;
+  color: white !important;
+  border: none !important;
+  font-family: 'Rajdhani', sans-serif !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.valorant-tag-danger {
+  background: linear-gradient(135deg, var(--valorant-red), #ff6b75) !important;
+  color: white !important;
+  border: none !important;
+  font-family: 'Rajdhani', sans-serif !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.valorant-tag-warning {
+  background: linear-gradient(135deg, #ffb800, #ffc933) !important;
+  color: white !important;
+  border: none !important;
+  font-family: 'Rajdhani', sans-serif !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.valorant-tag-default {
+  background: var(--valorant-dark-elevated) !important;
+  color: var(--valorant-text-secondary) !important;
+  border: 1px solid var(--valorant-dark-border) !important;
+  font-family: 'Rajdhani', sans-serif !important;
+  font-weight: 500 !important;
+}
+
+/* Valorant-style modals */
+.valorant-modal .ant-modal-content {
+  background: var(--valorant-dark-container) !important;
+  border: 1px solid var(--valorant-dark-border) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+}
+
+.valorant-modal .ant-modal-header {
+  background: var(--valorant-dark-elevated) !important;
+  border-bottom: 2px solid var(--valorant-red) !important;
+  border-radius: 8px 8px 0 0 !important;
+}
+
+.valorant-modal .ant-modal-title {
+  color: var(--valorant-text-primary) !important;
+  font-family: 'Rajdhani', sans-serif !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+}
+
+.valorant-modal .ant-modal-body {
+  background: var(--valorant-dark-container) !important;
+  color: var(--valorant-text-primary) !important;
+}
+
+.valorant-modal .ant-modal-footer {
+  background: var(--valorant-dark-container) !important;
+  border-top: 1px solid var(--valorant-dark-border) !important;
+  border-radius: 0 0 8px 8px !important;
+}
+
+/* Valorant-style inputs */
+.valorant-input .ant-input,
+.valorant-input .ant-select-selector {
+  background: var(--valorant-dark-elevated) !important;
+  border: 1px solid var(--valorant-dark-border) !important;
+  color: var(--valorant-text-primary) !important;
+  border-radius: 6px !important;
+  transition: all 0.3s ease !important;
+}
+
+.valorant-input .ant-input:hover,
+.valorant-input .ant-select-selector:hover {
+  border-color: var(--valorant-red) !important;
+  box-shadow: 0 0 8px rgba(255, 70, 85, 0.2) !important;
+}
+
+.valorant-input .ant-input:focus,
+.valorant-input .ant-select-focused .ant-select-selector {
+  border-color: var(--valorant-red) !important;
+  box-shadow: 0 0 12px rgba(255, 70, 85, 0.3) !important;
+}
+
+/* Valorant-style form labels */
+.valorant-form-label {
+  color: var(--valorant-text-secondary) !important;
+  font-family: 'Rajdhani', sans-serif !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  font-size: 12px !important;
+}
+
+/* Valorant-style dividers */
+.valorant-divider {
+  border-color: var(--valorant-dark-border) !important;
+  margin: 24px 0 !important;
+}
+
+.valorant-divider-red {
+  border-color: var(--valorant-red) !important;
+  margin: 24px 0 !important;
+}
+
+/* Valorant-style layout */
+.valorant-layout {
+  background: var(--valorant-dark-bg) !important;
+  min-height: 100vh !important;
+}
+
+.valorant-header {
+  background: var(--valorant-dark-container) !important;
+  border-bottom: 2px solid var(--valorant-red) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+.valorant-content {
+  background: var(--valorant-dark-bg) !important;
+  padding: 24px !important;
+}
+
+.valorant-sidebar {
+  background: var(--valorant-dark-container) !important;
+  border-right: 1px solid var(--valorant-dark-border) !important;
+}
+
+/* Valorant-style navigation */
+.valorant-nav .ant-menu {
+  background: transparent !important;
+  border: none !important;
+}
+
+.valorant-nav .ant-menu-item {
+  color: var(--valorant-text-secondary) !important;
+  font-family: 'Rajdhani', sans-serif !important;
+  font-weight: 500 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  margin: 4px 0 !important;
+  border-radius: 6px !important;
+}
+
+.valorant-nav .ant-menu-item:hover {
+  background: var(--valorant-dark-elevated) !important;
+  color: var(--valorant-red) !important;
+}
+
+.valorant-nav .ant-menu-item-selected {
+  background: linear-gradient(135deg, var(--valorant-red), #ff6b75) !important;
+  color: white !important;
+}
+
+/* Valorant-style progress bars */
+.valorant-progress .ant-progress-bg {
+  background: linear-gradient(135deg, var(--valorant-red), var(--valorant-teal)) !important;
+}
+
+.valorant-progress .ant-progress-success-bg {
+  background: linear-gradient(135deg, var(--valorant-teal), #1ae6b8) !important;
+}
+
+/* Valorant-style notifications */
+.valorant-notification {
+  background: var(--valorant-dark-container) !important;
+  border: 1px solid var(--valorant-dark-border) !important;
+  border-left: 4px solid var(--valorant-red) !important;
+  color: var(--valorant-text-primary) !important;
+  border-radius: 6px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Valorant-style loading spinner */
+.valorant-spin .ant-spin-dot-item {
+  background-color: var(--valorant-red) !important;
+}
+
+/* Valorant-style tabs */
+.valorant-tabs .ant-tabs-tab {
+  color: var(--valorant-text-secondary) !important;
+  font-family: 'Rajdhani', sans-serif !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.valorant-tabs .ant-tabs-tab-active {
+  color: var(--valorant-red) !important;
+}
+
+.valorant-tabs .ant-tabs-ink-bar {
+  background: linear-gradient(135deg, var(--valorant-red), var(--valorant-teal)) !important;
+  height: 3px !important;
+}
+
+/* Valorant-style steps */
+.valorant-steps .ant-steps-item-process .ant-steps-item-icon {
+  background: var(--valorant-red) !important;
+  border-color: var(--valorant-red) !important;
+}
+
+.valorant-steps .ant-steps-item-finish .ant-steps-item-icon {
+  background: var(--valorant-teal) !important;
+  border-color: var(--valorant-teal) !important;
+}
+
+/* Valorant-style badges */
+.valorant-badge {
+  background: linear-gradient(135deg, var(--valorant-red), #ff6b75) !important;
+  color: white !important;
+  font-family: 'Rajdhani', sans-serif !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  box-shadow: var(--valorant-glow) !important;
+}
+
+/* Valorant-style tooltips */
+.valorant-tooltip .ant-tooltip-inner {
+  background: var(--valorant-dark-elevated) !important;
+  color: var(--valorant-text-primary) !important;
+  border: 1px solid var(--valorant-dark-border) !important;
+  font-family: 'Rajdhani', sans-serif !important;
+  font-weight: 500 !important;
+}
+
+.valorant-tooltip .ant-tooltip-arrow::before {
+  background: var(--valorant-dark-elevated) !important;
+  border: 1px solid var(--valorant-dark-border) !important;
+}
+
+/* Valorant-style dropdown */
+.valorant-dropdown .ant-dropdown-menu {
+  background: var(--valorant-dark-container) !important;
+  border: 1px solid var(--valorant-dark-border) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+  padding: 8px !important;
+}
+
+.valorant-dropdown .ant-dropdown-menu-item {
+  color: var(--valorant-text-primary) !important;
+  font-family: 'Rajdhani', sans-serif !important;
+  font-weight: 500 !important;
+  border-radius: 6px !important;
+  margin: 2px 0 !important;
+  padding: 8px 12px !important;
+  transition: all 0.3s ease !important;
+}
+
+.valorant-dropdown .ant-dropdown-menu-item:hover {
+  background: var(--valorant-dark-elevated) !important;
+  color: var(--valorant-red) !important;
+}
+
+.valorant-dropdown .ant-dropdown-menu-item-danger {
+  color: var(--valorant-red) !important;
+}
+
+.valorant-dropdown .ant-dropdown-menu-item-danger:hover {
+  background: rgba(255, 70, 85, 0.1) !important;
+  color: var(--valorant-red) !important;
+}
+
+.valorant-dropdown .ant-dropdown-menu-divider {
+  background: var(--valorant-dark-border) !important;
+  margin: 8px 0 !important;
+}
+
+/* Navigation Bar Styles */
+.valorant-header {
+  background: var(--valorant-dark-container) !important;
+  border-bottom: 2px solid var(--valorant-red) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+.valorant-header .ant-menu-horizontal {
+  background: transparent !important;
+  border: none !important;
+  line-height: 62px !important;
+}
+
+.valorant-header .ant-menu-horizontal > .ant-menu-item {
+  color: var(--valorant-text-secondary) !important;
+  font-family: 'Rajdhani', sans-serif !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  border-bottom: 2px solid transparent !important;
+  margin: 0 8px !important;
+  padding: 0 16px !important;
+  transition: all 0.3s ease !important;
+}
+
+.valorant-header .ant-menu-horizontal > .ant-menu-item:hover {
+  color: var(--valorant-red) !important;
+  border-bottom-color: var(--valorant-red) !important;
+  background: rgba(255, 70, 85, 0.1) !important;
+}
+
+.valorant-header .ant-menu-horizontal > .ant-menu-item-selected {
+  color: var(--valorant-red) !important;
+  border-bottom-color: var(--valorant-red) !important;
+  background: rgba(255, 70, 85, 0.1) !important;
+}
+
+.valorant-header .ant-menu-horizontal > .ant-menu-submenu {
+  color: var(--valorant-text-secondary) !important;
+  font-family: 'Rajdhani', sans-serif !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  border-bottom: 2px solid transparent !important;
+  margin: 0 8px !important;
+  padding: 0 16px !important;
+  transition: all 0.3s ease !important;
+}
+
+.valorant-header .ant-menu-horizontal > .ant-menu-submenu:hover {
+  color: var(--valorant-red) !important;
+  border-bottom-color: var(--valorant-red) !important;
+  background: rgba(255, 70, 85, 0.1) !important;
+}
+
+.valorant-header .ant-menu-horizontal > .ant-menu-submenu-selected {
+  color: var(--valorant-red) !important;
+  border-bottom-color: var(--valorant-red) !important;
+  background: rgba(255, 70, 85, 0.1) !important;
+}
+
+/* Submenu dropdown */
+.valorant-header .ant-menu-submenu-popup {
+  background: var(--valorant-dark-container) !important;
+  border: 1px solid var(--valorant-dark-border) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+  padding: 8px !important;
+}
+
+.valorant-header .ant-menu-submenu-popup .ant-menu-item {
+  color: var(--valorant-text-primary) !important;
+  font-family: 'Rajdhani', sans-serif !important;
+  font-weight: 500 !important;
+  border-radius: 6px !important;
+  margin: 2px 0 !important;
+  padding: 8px 12px !important;
+  transition: all 0.3s ease !important;
+}
+
+.valorant-header .ant-menu-submenu-popup .ant-menu-item:hover {
+  background: var(--valorant-dark-elevated) !important;
+  color: var(--valorant-red) !important;
+}
+
+/* User profile hover effect */
+.user-profile-hover:hover {
+  border-color: var(--valorant-red) !important;
+  box-shadow: var(--valorant-glow) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Mobile navigation */
+.mobile-nav-overlay {
+  background: var(--valorant-dark-container) !important;
+  border: 1px solid var(--valorant-dark-border) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+}
+
+.mobile-nav-overlay .ant-menu-vertical .ant-menu-item {
+  color: var(--valorant-text-primary) !important;
+  font-family: 'Rajdhani', sans-serif !important;
+  font-weight: 500 !important;
+  margin: 4px 8px !important;
+  border-radius: 6px !important;
+  transition: all 0.3s ease !important;
+}
+
+.mobile-nav-overlay .ant-menu-vertical .ant-menu-item:hover {
+  background: var(--valorant-dark-elevated) !important;
+  color: var(--valorant-red) !important;
+}
+
+.mobile-nav-overlay .ant-menu-vertical .ant-menu-item-selected {
+  background: var(--valorant-red) !important;
+  color: white !important;
+}
+
+/* Logo animation */
+.valorant-logo:hover {
+  transform: scale(1.05) !important;
+  box-shadow: var(--valorant-glow-strong) !important;
+}
+
+/* Badge styling */
+.valorant-header .ant-badge-count {
+  background: var(--valorant-red) !important;
+  color: white !important;
+  font-family: 'Rajdhani', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 10px !important;
+  box-shadow: var(--valorant-glow) !important;
+}
+
+/* Responsive Navigation */
+.desktop-nav {
+  display: block !important;
+}
+
+.mobile-menu-btn {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none !important;
+  }
+  
+  .mobile-menu-btn {
+    display: block !important;
+  }
+}
+
+/* Mobile navigation overlay */
+.mobile-nav-overlay {
+  background: var(--valorant-dark-container) !important;
+  border: 1px solid var(--valorant-dark-border) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+}
+
+.mobile-nav-overlay .ant-menu-vertical .ant-menu-item {
+  color: var(--valorant-text-primary) !important;
+  font-family: 'Rajdhani', sans-serif !important;
+  font-weight: 500 !important;
+  margin: 4px 8px !important;
+  border-radius: 6px !important;
+  transition: all 0.3s ease !important;
+}
+
+.mobile-nav-overlay .ant-menu-vertical .ant-menu-item:hover {
+  background: var(--valorant-dark-elevated) !important;
+  color: var(--valorant-red) !important;
+}
+
+.mobile-nav-overlay .ant-menu-vertical .ant-menu-item-selected {
+  background: var(--valorant-red) !important;
+  color: white !important;
+}
+
+/* Valorant-style scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--valorant-dark-bg);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--valorant-dark-border);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--valorant-red);
+}
+
+/* Valorant-style selection */
+::selection {
+  background: var(--valorant-red);
+  color: white;
+}
+
+::-moz-selection {
+  background: var(--valorant-red);
+  color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .valorant-title {
+    font-size: 24px;
+  }
+  
+  .valorant-subtitle {
+    font-size: 16px;
+  }
+  
+  .valorant-content {
+    padding: 16px !important;
+  }
+}
+
+/* Animation keyframes */
+@keyframes valorant-glow {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 70, 85, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 70, 85, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(255, 70, 85, 0.2);
+  }
+}
+
+.valorant-glow-animation {
+  animation: valorant-glow 2s ease-in-out infinite;
+}
+
+/* Utility classes */
+.valorant-text-primary {
+  color: var(--valorant-text-primary) !important;
+}
+
+.valorant-text-secondary {
+  color: var(--valorant-text-secondary) !important;
+}
+
+.valorant-text-tertiary {
+  color: var(--valorant-text-tertiary) !important;
+}
+
+.valorant-bg-primary {
+  background: var(--valorant-dark-bg) !important;
+}
+
+.valorant-bg-container {
+  background: var(--valorant-dark-container) !important;
+}
+
+.valorant-bg-elevated {
+  background: var(--valorant-dark-elevated) !important;
+}
+
+.valorant-border {
+  border: 1px solid var(--valorant-dark-border) !important;
+}
+
+.valorant-border-red {
+  border: 1px solid var(--valorant-red) !important;
+}
+
+.valorant-shadow {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+}
+
+.valorant-shadow-red {
+  box-shadow: var(--valorant-glow) !important;
+}
