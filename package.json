@@ -6,19 +6,30 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
+    "db:seed": "tsx prisma/seed.ts",
+    "db:studio": "prisma studio",
+    "db:reset": "prisma migrate reset"
   },
   "dependencies": {
     "antd": "^5.26.4",
     "next": "15.3.5",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "@prisma/client": "^5.22.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/node": "24.0.15",
+    "@types/react": "19.1.8",
     "eslint": "^9",
     "eslint-config-next": "15.3.5",
-    "tailwindcss": "^4"
+    "tailwindcss": "^4",
+    "prisma": "^5.22.0",
+    "tsx": "^4.7.0"
   }
 }

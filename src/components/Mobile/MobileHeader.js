@@ -6,7 +6,7 @@ import {
   BellOutlined,
   UserOutlined,
   HomeOutlined,
-  DashboardOutlined,
+  // ...existing code...
   SettingOutlined,
   LogoutOutlined,
   TrophyOutlined
@@ -35,9 +35,7 @@ export default function MobileHeader() {
       label: <Link href="/" onClick={() => setDrawerVisible(false)}>หน้าหลัก</Link>,
     },
     {
-      key: "/dashboard",
-      icon: <DashboardOutlined />,
-      label: <Link href="/dashboard" onClick={() => setDrawerVisible(false)}>แดชบอร์ด</Link>,
+  // ...existing code...
     },
     {
       type: "divider"
@@ -62,7 +60,7 @@ export default function MobileHeader() {
 
   const getSelectedKey = () => {
     if (pathname === "/") return ["/"];
-    if (pathname === "/dashboard") return ["/dashboard"];
+  // ...existing code...
     return [];
   };
 

@@ -11,7 +11,7 @@ import {
 } from "antd";
 import {
   HomeOutlined,
-  DashboardOutlined,
+  // ...existing code...
   UserOutlined,
   SettingOutlined,
   LogoutOutlined,
@@ -45,9 +45,7 @@ export default function NavigationBar() {
       label: <Link href="/">หน้าหลัก</Link>,
     },
     {
-      key: "/dashboard",
-      icon: <DashboardOutlined />,
-      label: <Link href="/dashboard">แดชบอร์ด</Link>,
+  // ...existing code...
     },
   ];
 
@@ -79,7 +77,7 @@ export default function NavigationBar() {
 
   const getSelectedKey = () => {
     if (pathname === "/") return ["/"];
-    if (pathname === "/dashboard") return ["/dashboard"];
+  // ...existing code...
     return [];
   };
 

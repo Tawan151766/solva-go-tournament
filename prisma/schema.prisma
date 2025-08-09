@@ -1,0 +1,385 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User Management
+model User {
+  id            String   @id @default(cuid())
+  username      String   @unique
+  email         String   @unique
+  firstName     String
+  lastName      String
+  displayName   String
+  avatar        String?
+  dateOfBirth   DateTime
+  gender        Gender
+  nationality   String
+  country       String
+  region        String
+  phone         String   @unique
+  role          UserRole @default(PLAYER)
+  status        UserStatus @default(ACTIVE)
+  
+  // Game Profiles (JSON for flexibility)
+  gameProfiles  Json?
+  preferences   Json?
+  statistics    Json?
+  socialLinks   Json?
+  
+  // Verification
+  emailVerified Boolean @default(false)
+  phoneVerified Boolean @default(false)
+  kycVerified   Boolean @default(false)
+  
+  // Timestamps
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  lastLoginAt   DateTime?
+  
+  // Relations
+  createdTournaments    Tournament[] @relation("TournamentCreator")
+  createdEvents         Event[] @relation("EventCreator")
+  teamRegistrations     TeamRegistration[] @relation("TeamRegistrationSubmitter")
+  captainRegistrations  TeamRegistration[] @relation("TeamCaptain")
+  teamMembers          TeamMember[]
+  reviewedRegistrations TeamRegistration[] @relation("RegistrationReviewer")
+  approvedRegistrations TeamRegistration[] @relation("RegistrationApprover")
+  notifications        Notification[]
+  auditLogs            AuditLog[]
+  
+  @@map("users")
+}
+
+// Tournament Management
+model Tournament {
+  id                String   @id @default(cuid())
+  name              String
+  description       String?
+  type              TournamentType
+  game              String?
+  startDate         DateTime
+  endDate           DateTime
+  registrationStart DateTime
+  registrationEnd   DateTime
+  location          String
+  venue             String?
+  status            TournamentStatus @default(DRAFT)
+  prize             String?
+  maxParticipants   Int
+  currentParticipants Int @default(0)
+  
+  // Organizer Info (JSON for flexibility)
+  organizer         Json
+  rules             String?
+  format            CompetitionFormat
+  tags              String[]
+  isPublic          Boolean @default(true)
+  requiresApproval  Boolean @default(true)
+  
+  // Timestamps
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  // Relations
+  createdBy         String
+  creator           User @relation("TournamentCreator", fields: [createdBy], references: [id])
+  events            Event[]
+  teamRegistrations TeamRegistration[]
+  
+  @@map("tournaments")
+}
+
+model Event {
+  id              String   @id @default(cuid())
+  tournamentId    String
+  name            String
+  description     String?
+  category        String
+  competitionType CompetitionType
+  teamSize        Int
+  minTeamSize     Int
+  maxTeamSize     Int
+  maxTeams        Int
+  currentTeams    Int @default(0)
+  date            DateTime
+  startTime       String
+  endTime         String
+  location        String
+  format          CompetitionFormat
+  status          EventStatus @default(DRAFT)
+  entryFee        Decimal? @db.Decimal(10,2)
+  currency        String @default("THB")
+  
+  // JSON fields for complex data
+  prizes          Json? // Array of prize objects
+  requirements    Json? // Event requirements object
+  schedule        Json? // Schedule array
+  
+  // Timestamps
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  // Relations
+  tournament      Tournament @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
+  createdBy       String
+  creator         User @relation("EventCreator", fields: [createdBy], references: [id])
+  teamRegistrations TeamRegistration[]
+  
+  @@map("events")
+}
+
+// Team Registration Management
+model TeamRegistration {
+  id              String   @id @default(cuid())
+  teamId          String?  // Optional existing team ID
+  tournamentId    String
+  eventId         String
+  teamName        String
+  teamTag         String
+  teamLogo        String?
+  
+  // Registration Details
+  registrationDate DateTime @default(now())
+  status          RegistrationStatus @default(SUBMITTED)
+  priority        Priority @default(MEDIUM)
+  
+  // Team Information
+  teamDescription String?
+  motivation      String?
+  previousExperience String?
+  
+  // Contact Information (JSON)
+  contactInfo     Json
+  
+  // Payment Information
+  paymentMethod   PaymentMethod?
+  paymentAmount   Decimal? @db.Decimal(10,2)
+  paymentCurrency String @default("THB")
+  paymentStatus   PaymentStatus @default(PENDING)
+  transactionId   String?
+  paymentSlip     String?
+  paidAt          DateTime?
+  
+  // Approval Information
+  reviewedBy      String?
+  reviewedAt      DateTime?
+  approvedBy      String?
+  approvedAt      DateTime?
+  rejectionReason String?
+  adminNotes      String?
+  
+  // Tournament Assignment
+  seed            Int?
+  groupAssignment String?
+  bracketPosition String?
+  
+  // Notifications (JSON)
+  notifications   Json?
+  
+  // Documents (JSON array)
+  documents       Json?
+  
+  // Timestamps
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  // Relations
+  tournament      Tournament @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
+  event           Event @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  submittedBy     String
+  submitter       User @relation("TeamRegistrationSubmitter", fields: [submittedBy], references: [id])
+  captainId       String
+  captain         User @relation("TeamCaptain", fields: [captainId], references: [id])
+  reviewer        User? @relation("RegistrationReviewer", fields: [reviewedBy], references: [id])
+  approver        User? @relation("RegistrationApprover", fields: [approvedBy], references: [id])
+  teamMembers     TeamMember[]
+  
+  @@map("team_registrations")
+}
+
+model TeamMember {
+  id                  String   @id @default(cuid())
+  teamRegistrationId  String
+  userId              String
+  username            String
+  email               String
+  rank                String?
+  role                String   // In-game role
+  isPrimary           Boolean @default(true)
+  
+  // Timestamps
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  
+  // Relations
+  teamRegistration    TeamRegistration @relation(fields: [teamRegistrationId], references: [id], onDelete: Cascade)
+  user                User @relation(fields: [userId], references: [id])
+  
+  @@unique([teamRegistrationId, userId])
+  @@map("team_members")
+}
+
+// Notification System
+model Notification {
+  id          String   @id @default(cuid())
+  userId      String
+  type        NotificationType
+  title       String
+  message     String
+  data        Json?    // Additional notification data
+  read        Boolean @default(false)
+  readAt      DateTime?
+  
+  // Timestamps
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  user        User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("notifications")
+}
+
+// Audit Log for tracking changes
+model AuditLog {
+  id          String   @id @default(cuid())
+  userId      String?
+  action      String
+  entity      String   // Table name
+  entityId    String   // Record ID
+  oldValues   Json?
+  newValues   Json?
+  ipAddress   String?
+  userAgent   String?
+  
+  // Timestamps
+  createdAt   DateTime @default(now())
+  
+  // Relations
+  user        User? @relation(fields: [userId], references: [id])
+  
+  @@map("audit_logs")
+}
+
+// System Settings
+model Setting {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  value       Json
+  description String?
+  
+  // Timestamps
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@map("settings")
+}
+
+// Enums
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+enum UserRole {
+  PLAYER
+  ADMIN
+  ORGANIZER
+  MODERATOR
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+  BANNED
+  PENDING
+}
+
+enum TournamentType {
+  ESPORTS
+  TRADITIONAL
+  ONLINE
+  OFFLINE
+}
+
+enum TournamentStatus {
+  DRAFT
+  UPCOMING
+  REGISTRATION_OPEN
+  REGISTRATION_CLOSED
+  ONGOING
+  COMPLETED
+  CANCELLED
+}
+
+enum EventStatus {
+  DRAFT
+  REGISTRATION_OPEN
+  REGISTRATION_CLOSED
+  ONGOING
+  COMPLETED
+  CANCELLED
+}
+
+enum CompetitionType {
+  INDIVIDUAL
+  TEAM
+}
+
+enum CompetitionFormat {
+  SINGLE_ELIMINATION
+  DOUBLE_ELIMINATION
+  ROUND_ROBIN
+  SWISS
+  GROUP_STAGE
+  BRACKET
+}
+
+enum RegistrationStatus {
+  DRAFT
+  SUBMITTED
+  PENDING
+  APPROVED
+  REJECTED
+  WITHDRAWN
+  DISQUALIFIED
+}
+
+enum Priority {
+  HIGH
+  MEDIUM
+  LOW
+}
+
+enum PaymentMethod {
+  BANK_TRANSFER
+  CREDIT_CARD
+  PAYPAL
+  CRYPTO
+  CASH
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+enum NotificationType {
+  REGISTRATION_CONFIRMED
+  PAYMENT_RECEIVED
+  APPROVAL_STATUS
+  TOURNAMENT_UPDATE
+  SYSTEM_ANNOUNCEMENT
+}
